@@ -47,18 +47,24 @@ class GradientDescentMultipleRegression:
         """
         Find best learning rate using validation data to prevent overfitting
         """
-        print('entered')
         if learning_rates is None:
             # Test more learning rates in a reasonable range
-            learning_rates = np.logspace(-4, 0, 20)  # Creates 20 points between 0.0001 and 1
+            # Creates 20 points between 0.0001 and 1
+            learning_rates = [1e-7, 1e-6, 5e-5, 1e-5, 5e-4, 1e-4, 5e-3, 1e-3, 5e-2, 1e-2]
             
         results = {}
         best_lr = None
         best_val_r2 = float('-inf')
 
-        print("Learning rates to test:", learning_rates)
+        X_train = np.array(X_train)
+        y_train = np.array(y_train)
+        X_val = np.array(X_val)
+        y_val = np.array(y_val)
+
+        print("Learnings rates to test:", learning_rates)
         
         for lr in learning_rates:
+            print('learning rate', lr)
             # Store original learning rate
             original_lr = self.learning_rate
             self.learning_rate = lr
@@ -69,8 +75,10 @@ class GradientDescentMultipleRegression:
             # Get predictions on validation set
             val_pred = self.predict(X_val)
             
+
             # Calculate metrics
             val_r2 = r2_score(y_val, val_pred)
+
             val_rmse = np.sqrt(mean_squared_error(y_val, val_pred))
             
             results[lr] = {
