@@ -4,4 +4,3 @@ flask
 scikit-learn
 seaborn
 pandas
-matplotlib.pyplot
