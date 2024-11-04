@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import model  # Import your custom model class
+from model_implementation import model
 
 # Read the data
 data = pd.read_csv('data/Cellphone.csv')
