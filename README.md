@@ -77,6 +77,3 @@ Contributions are welcome! Please create a pull request or open an issue to disc
 
 This project is licensed under the MIT License.
 
----
-
-Feel free to modify or expand upon this draft as needed. If you have any additional details or sections you'd like to include, let me know!
