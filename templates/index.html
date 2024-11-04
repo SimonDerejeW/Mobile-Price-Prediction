@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Price Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Predict Mobile Price</h1>
+        <form action="/predict" method="post" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="sale" class="block text-sm font-medium text-gray-700">Sale (%):</label>
+                    <input type="number" step="1" name="sale" placeholder="e.g: 10" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="weight" class="block text-sm font-medium text-gray-700">Weight (g):</label>
+                    <input type="number" step="0.1" name="weight" placeholder="e.g: 140" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="resolution" class="block text-sm font-medium text-gray-700">Resolution (inches):</label>
+                    <input type="number" step="0.1" name="resolution" placeholder="e.g: 4.7" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="ppi" class="block text-sm font-medium text-gray-700">Pixel Density (PPI):</label>
+                    <input type="number" step="1" name="ppi" placeholder="e.g: 350" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="cpucore" class="block text-sm font-medium text-gray-700">CPU Cores:</label>
+                    <input type="number" step="1" name="cpucore" placeholder="e.g: 4" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="cpufreq" class="block text-sm font-medium text-gray-700">CPU Frequency (GHz):</label>
+                    <input type="number" step="0.01" name="cpufreq" placeholder="e.g: 2.1" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="internalmem" class="block text-sm font-medium text-gray-700">Internal Memory (GB):</label>
+                    <input type="number" step="1" name="internalmem" placeholder="e.g: 8" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="ram" class="block text-sm font-medium text-gray-700">RAM (GB):</label>
+                    <input type="number" step="0.1" name="ram" placeholder="e.g: 2" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="rear_cam" class="block text-sm font-medium text-gray-700">Rear Camera (MP):</label>
+                    <input type="number" step="0.1" name="rear_cam" placeholder="e.g: 10" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="front_cam" class="block text-sm font-medium text-gray-700">Front Camera (MP):</label>
+                    <input type="number" step="0.1" name="front_cam" placeholder="e.g: 5" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="battery" class="block text-sm font-medium text-gray-700">Battery Capacity (mAh):</label>
+                    <input type="number" step="1" name="battery" placeholder="e.g: 2800" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="thickness" class="block text-sm font-medium text-gray-700">Thickness (mm):</label>
+                    <input type="number" step="0.1" name="thickness" placeholder="e.g: 10" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+            </div>
+
+            <div>
+                <input type="submit" value="Predict" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-colors duration-300">
+            </div>
+        </form>
+
+        {% if prediction_text %}
+            <h2 class="mt-6 text-xl font-semibold text-center text-gray-800">{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
